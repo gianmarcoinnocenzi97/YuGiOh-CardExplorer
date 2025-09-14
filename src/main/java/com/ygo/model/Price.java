@@ -6,17 +6,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "races")
+@Table(name = "type")
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Races {
+public class Price {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    
+    private Double cardmarket;
+    private Double tcgplayer;
+    private Double ebay;
+    private Double amazon;
+    private Double coolstuffinc;
+    @OneToOne
+    @JoinColumn(name = "card_id", referencedColumnName = "id")
+    private Card card;
+
+
 }
