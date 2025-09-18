@@ -30,7 +30,7 @@ public class JwtUtils {
     @Value("${jwt.header}")
     private String header;
 
-    private final long jwtExpirationMs = 24 * 60 * 60 * 1000;
+    private static final long JWT_EXPIRATION_MS = 24L * 60 * 60 * 1000;
 
     private SecretKey getSignInKey() {
         return Keys.hmacShaKeyFor(secretKey.getBytes());
@@ -50,7 +50,7 @@ public class JwtUtils {
                 .setSubject(userDetails.getUsername())
                 .claim("authorities", userDetails.getAuthorities())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
+                .setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION_MS))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
