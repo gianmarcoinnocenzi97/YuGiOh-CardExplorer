@@ -51,6 +51,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/user/register").permitAll()
+                        .requestMatchers("/card/cards").permitAll()
                         .requestMatchers("/error").anonymous()
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

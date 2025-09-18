@@ -15,7 +15,6 @@ spring:
     username: ygo
     password: ygopass
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     hibernate:
       ddl-auto: none
@@ -24,6 +23,14 @@ spring:
       hibernate:
         format_sql: true
 
+app:
+  config:
+    ygoprodeck:
+      base-url: https://db.ygoprodeck.com/api/v7/
+      card-info: cardinfo.php
+
 jwt:
   secret: 3F7A9C2D5E1B6F8A4C9E2D7B1F6A3C8E9D0B4F7C6A2E5D1F8B3C6A7D9E4F1B2C
   header: Authorization
+
+
