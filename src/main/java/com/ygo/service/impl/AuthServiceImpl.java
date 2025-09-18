@@ -31,10 +31,7 @@ public class AuthServiceImpl implements AuthService {
     public UserDetails authenticate(String userEmail) {
         Auth auth = authRepository.findByUserEmail(userEmail.toLowerCase())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Utente non trovato"));
-
-        return new User(
-                auth.getUser().getEmail(),
-                auth.getPassword(),
+        return new User(auth.getUser().getEmail(), auth.getPassword(),
                 Collections.singleton(new SimpleGrantedAuthority(auth.getUser().getRole().getDescription()))
         );
     }

@@ -20,6 +20,7 @@ public class Effect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "effect_condition")  // evita "condition"
     private String condition;
     private String cost;
     private String resolution;

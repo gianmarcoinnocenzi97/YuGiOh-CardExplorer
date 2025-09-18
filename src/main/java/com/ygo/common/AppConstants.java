@@ -14,6 +14,7 @@ public class AppConstants {
     public static final String EFFECT_TAG_URL = "/effect-tag";
     public static final String CARD_RELEASE_URL = "/card-release";
     public static final String FRAME_TYPE_URL = "/frame-type";
+    public static final String USER_URL = "/user";
     public static final String AUTH_URL = "/auth";
 
 

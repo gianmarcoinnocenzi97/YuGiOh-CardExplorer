@@ -22,7 +22,7 @@ public class Rarity {
     private Long id;
     private String name;
     private String code;
-    @OneToMany(mappedBy = "rarity")
+    @OneToMany(mappedBy = "rarityCard")
     @JsonIgnore
     private List<CardRelease> cardReleases;
 }

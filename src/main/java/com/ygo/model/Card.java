@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.util.List;
 
+
 @Table(name = "card")
 @Entity
 @Setter
@@ -21,11 +22,11 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(name = "desc")
     private String description;
     private Double atk;
     private Double def;
     private Integer level;
+    @Column(name = "card_rank")
     private Integer rank;
     private Integer linkVal;
     @Column(columnDefinition = "json")

@@ -23,9 +23,9 @@ public class CardRelease {
     private Card card;
     @ManyToOne
     @JoinColumn(name = "set_id", referencedColumnName = "id")
-    private Set set;
+    private Set setCard;
     @ManyToOne
     @JoinColumn(name = "rarity_id", referencedColumnName = "id")
-    private Rarity rarity;
+    private Rarity rarityCard;
     
 }

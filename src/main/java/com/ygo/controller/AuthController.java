@@ -4,11 +4,12 @@ package com.ygo.controller;
 import com.ygo.common.AppConstants;
 import com.ygo.config.JwtUtils;
 import com.ygo.model.User;
-import com.ygo.model.dto.JwtRequest;
+import com.ygo.model.dto.request.JwtRequest;
 import com.ygo.service.AuthService;
 import com.ygo.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,12 +30,12 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<Void> login(@RequestBody JwtRequest request, HttpServletResponse response) {
+    public ResponseEntity<HttpStatus> login(@RequestBody JwtRequest request, HttpServletResponse response) {
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+                new UsernamePasswordAuthenticationToken(request.email(), request.password())
         );
-        UserDetails userDetails = authService.authenticate(request.getEmail());
-        User user = userService.findByEmail(request.getEmail());
+        UserDetails userDetails = authService.authenticate(request.email());
+        User user = userService.findByEmail(request.email());
         String jwt = jwtUtils.generateClaims(userDetails, user);
         response.setHeader("Authorization", "Bearer " + jwt);
         return ResponseEntity.ok().build();

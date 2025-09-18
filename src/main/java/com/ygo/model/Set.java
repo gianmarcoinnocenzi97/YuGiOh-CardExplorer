@@ -9,7 +9,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Table(name = "set")
+@Table(name = "set_card")
 @Entity
 @Setter
 @Getter
@@ -22,7 +22,7 @@ public class Set {
     private Long id;
     private String name;
     private String code;
-    @OneToMany(mappedBy = "set")
+    @OneToMany(mappedBy = "setCard")
     @JsonIgnore
     private List<CardRelease> cardReleases;
 

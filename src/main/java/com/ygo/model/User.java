@@ -27,7 +27,7 @@ public class User implements UserDetails {
     @Column(unique = true, nullable = false)
     private String email;
     private Boolean isActive;
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Auth auth;
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id")

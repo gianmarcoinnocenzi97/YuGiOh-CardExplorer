@@ -30,7 +30,6 @@ public class JwtUtils {
     @Value("${jwt.header}")
     private String header;
 
-    // Durata token: 24 ore
     private final long jwtExpirationMs = 24 * 60 * 60 * 1000;
 
     private SecretKey getSignInKey() {
