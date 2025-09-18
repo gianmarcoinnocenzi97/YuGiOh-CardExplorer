@@ -1,4 +1,4 @@
-package com.ygo.controller;
+package com.ygo.rest;
 
 
 import com.ygo.common.AppConstants;

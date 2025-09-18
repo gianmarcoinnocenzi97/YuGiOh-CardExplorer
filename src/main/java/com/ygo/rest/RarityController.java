@@ -1,4 +1,4 @@
-package com.ygo.controller;
+package com.ygo.rest;
 
 
 import com.ygo.common.AppConstants;
@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
-@RequestMapping(AppConstants.ARCHETYPE_URL)
+@RequestMapping(AppConstants.RARITY_URL)
 @RestController
-public class ArchetypeController {
+public class RarityController {
 
 
 }
