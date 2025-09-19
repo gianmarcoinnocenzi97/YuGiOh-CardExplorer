@@ -16,7 +16,6 @@ public class YgoProDeckClient {
     public YgoProDeckClient(WebClient.Builder webClientBuilder, YgoProDeckProperties properties) {
         this.properties = properties;
 
-        // Configurazione max buffer per JSON grandi (es. 50 MB)
         ExchangeStrategies strategies = ExchangeStrategies.builder()
                 .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(50 * 1024 * 1024))
                 .build();
