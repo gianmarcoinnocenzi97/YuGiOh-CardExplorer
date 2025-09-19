@@ -7,7 +7,7 @@ import java.util.List;
 @Data
 public class DataItem {
 
-	private int id;
+	private String id;
 	private String name;
 	private String type;
 	private String frameType;

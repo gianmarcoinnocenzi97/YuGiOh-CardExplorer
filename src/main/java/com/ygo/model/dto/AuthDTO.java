@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class AuthDTO {
 
 
-    private Long id;
+    private String id;
     private String password;
     private String codePassword;
     private LocalDateTime registrationDate;

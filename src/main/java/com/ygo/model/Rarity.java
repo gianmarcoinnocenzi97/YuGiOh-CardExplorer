@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
 
@@ -18,9 +19,10 @@ import java.util.List;
 public class Rarity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @UuidGenerator
+    private String id;
     private String name;
+    @Column(nullable = false, unique = true)
     private String code;
     @OneToMany(mappedBy = "rarityCard")
     @JsonIgnore

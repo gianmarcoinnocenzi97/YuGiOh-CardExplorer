@@ -12,7 +12,7 @@ import lombok.Setter;
 public class EffectTagDTO {
 
 
-    private Long id;
+    private String id;
     private String name;
 
 }

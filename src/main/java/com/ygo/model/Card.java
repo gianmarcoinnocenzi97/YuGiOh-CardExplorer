@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
-
 
 @Table(name = "card")
 @Entity
@@ -19,20 +19,18 @@ import java.util.List;
 public class Card {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String name;
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
-    private Double atk;
-    private Double def;
+    private Integer atk;
+    private Integer def;
     private Integer level;
     @Column(name = "card_rank")
     private Integer rank;
     private Integer linkVal;
-    @Column(columnDefinition = "json")
+    @Column(columnDefinition = "LONGTEXT")
     private String linkmarkers;
-    @Column(columnDefinition = "json")
-    private String analyzedDesc;
     @ManyToOne
     @JoinColumn(name = "attribute_id", referencedColumnName = "id")
     private Attribute attribute;
@@ -54,19 +52,17 @@ public class Card {
             joinColumns = @JoinColumn(name = "card_id"),
             inverseJoinColumns = @JoinColumn(name = "effect_tag_id")
     )
-    private List<EffectTag> tags;
+    private List<EffectTag> tags = new ArrayList<>();
     @ManyToMany
     @JoinTable(
             name = "card_effect",
             joinColumns = @JoinColumn(name = "card_id"),
             inverseJoinColumns = @JoinColumn(name = "effect_id")
     )
-    private List<Effect> effects;
-    @OneToMany(mappedBy = "card")
+    private List<Effect> effects = new ArrayList<>();
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private List<CardRelease> cardReleases;
-    @OneToOne(mappedBy = "card")
+    private List<CardRelease> cardReleases = new ArrayList<>();
+    @OneToOne(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
     private Price price;
-
-
 }

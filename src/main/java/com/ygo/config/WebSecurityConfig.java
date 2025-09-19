@@ -52,6 +52,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/user/register").permitAll()
                         .requestMatchers("/card/cards").permitAll()
+                        .requestMatchers("/card/update").permitAll()
                         .requestMatchers("/error").anonymous()
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

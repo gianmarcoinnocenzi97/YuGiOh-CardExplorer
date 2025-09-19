@@ -13,7 +13,7 @@ import lombok.Setter;
 public class EffectDTO {
 
 
-    private Long id;
+    private String id;
     private String condition;
     private String cost;
     private String resolution;

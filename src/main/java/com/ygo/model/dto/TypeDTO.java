@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class TypeDTO {
 
-    private Long id;
+    private String id;
     private String name;
     
 }

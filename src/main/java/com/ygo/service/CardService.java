@@ -18,4 +18,6 @@ public interface CardService {
     List<CardDTO> findByNames(List<String> names);
     Mono<CardContainer> fetchAllCards();
     byte[] exportToPdf(CardIdsPdfRequest request) throws IOException;
+
+    void updateCards();
 }

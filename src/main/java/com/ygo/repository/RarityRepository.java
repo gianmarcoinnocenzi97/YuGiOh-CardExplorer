@@ -1,6 +1,6 @@
 package com.ygo.repository;
 
-import com.ygo.model.FrameType;
+import com.ygo.model.Rarity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Repository
-public interface FrameTypeRepository extends JpaRepository<FrameType, Long> {
+public interface RarityRepository extends JpaRepository<Rarity, Long> {
 
-    Optional<FrameType> findFirstByName(String name);
+    Optional<Rarity> findFirstByName(String name);
 
-    default FrameType findOrCreateByName(String name) {
+    default Rarity findOrCreateByName(String name, String code) {
         if (name == null || name.isBlank()) return null;
 
         synchronized (this) {
             return findFirstByName(name)
-                    .orElseGet(() -> save(new FrameType(null, name, new ArrayList<>())));
+                    .orElseGet(() -> save(new Rarity(null, name, code, new ArrayList<>())));
         }
     }
 }

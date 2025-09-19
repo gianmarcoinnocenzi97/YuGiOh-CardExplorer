@@ -11,12 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PriceDTO {
 
-    private Long id;
-    private Double cardmarket;
-    private Double tcgplayer;
-    private Double ebay;
-    private Double amazon;
-    private Double coolstuffinc;
+    private String id;
+    private String cardmarket;
+    private String tcgplayer;
+    private String ebay;
+    private String amazon;
+    private String coolstuffinc;
 
 
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
 
@@ -18,8 +19,8 @@ import java.util.List;
 public class Effect {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @UuidGenerator
+    private String id;
     @Column(name = "effect_condition")  // evita "condition"
     private String condition;
     private String cost;

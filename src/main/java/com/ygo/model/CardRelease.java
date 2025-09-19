@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 @Table(name = "card_release")
 @Entity
@@ -15,9 +16,9 @@ import lombok.Setter;
 public class CardRelease {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Double price;
+    @UuidGenerator
+    private String id;
+    private String price;
     @ManyToOne
     @JoinColumn(name = "card_id", referencedColumnName = "id")
     private Card card;

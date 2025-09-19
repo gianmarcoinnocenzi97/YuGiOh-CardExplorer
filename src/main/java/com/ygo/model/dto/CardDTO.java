@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class CardDTO {
 
-    private Long id;
+    private String id;
     private String name;
     private String description;
     private Double atk;
@@ -23,7 +23,6 @@ public class CardDTO {
     private Integer rank;
     private Integer linkVal;
     private String linkmarkers;
-    private String analyzedDesc;
     private AttributeDTO attribute;
     private RaceDTO race;
     private TypeDTO type;

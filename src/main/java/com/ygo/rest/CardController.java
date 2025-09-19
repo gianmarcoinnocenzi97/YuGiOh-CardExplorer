@@ -54,6 +54,12 @@ public class CardController {
     public Mono<CardContainer> getAllCards() {
         return cardService.fetchAllCards();
     }
+
+    @GetMapping("/update")
+    public void updateCards() {
+        cardService.updateCards();
+    }
+
     @PostMapping("/export")
     public ResponseEntity<byte[]> exportToPdf(@RequestBody CardIdsPdfRequest request) {
         try {
