@@ -19,7 +19,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.util.List;
@@ -51,8 +50,8 @@ public class CardController {
     }
 
     @GetMapping("/cards")
-    public Mono<CardContainer> getAllCards() {
-        return cardService.fetchAllCards();
+    public ResponseEntity<CardContainer> getAllCards() {
+        return ResponseEntity.ok(cardService.fetchAllCards());
     }
 
     @GetMapping("/update")

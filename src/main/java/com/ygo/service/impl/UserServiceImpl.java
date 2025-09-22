@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void register(RegisterRequest request) {
+    public void userRegister(RegisterRequest request) {
         if (userRepository.findByEmail(request.email()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already in use");
         }

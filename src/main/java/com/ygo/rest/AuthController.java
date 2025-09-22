@@ -34,12 +34,14 @@ public class AuthController {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.email(), request.password())
         );
+
         UserDetails userDetails = authService.authenticate(request.email());
         User user = userService.findByEmail(request.email());
         String jwt = jwtUtils.generateClaims(userDetails, user);
         response.setHeader("Authorization", "Bearer " + jwt);
         return ResponseEntity.ok().build();
     }
+
 
 
 }

@@ -22,7 +22,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,9 +72,14 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Mono<CardContainer> fetchAllCards() {
-        return client.fetchAllCardsMono()
-                .onErrorResume(e -> Mono.error(new RuntimeException("Errore nel recupero delle carte", e)));
+    public CardContainer fetchAllCards() {
+        try {
+            return client.fetchAllCardsMono()
+                    .blockOptional()
+                    .orElseThrow(() -> new RuntimeException("Nessuna carta trovata"));
+        } catch (Exception e) {
+            throw new RuntimeException("Errore nel recupero delle carte", e);
+        }
     }
 
     @Override

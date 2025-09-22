@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<HttpStatus> register(@Valid @RequestBody RegisterRequest request) {
-        userService.register(request);
+        userService.userRegister(request);
         return ResponseEntity.ok().build();
     }
 

@@ -6,7 +6,6 @@ import com.ygo.model.dto.request.CardIdsPdfRequest;
 import com.ygo.model.pojo.CardContainer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,8 +15,7 @@ public interface CardService {
     CardDTO getCardById(Long id);
     Page<CardDTO> cardFilter(CardCriteria criteria, Pageable pageable);
     List<CardDTO> findByNames(List<String> names);
-    Mono<CardContainer> fetchAllCards();
+    CardContainer fetchAllCards();
     byte[] exportToPdf(CardIdsPdfRequest request) throws IOException;
-
     void updateCards();
 }
