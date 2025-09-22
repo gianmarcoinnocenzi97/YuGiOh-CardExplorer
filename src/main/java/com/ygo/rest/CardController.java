@@ -4,12 +4,9 @@ package com.ygo.rest;
 import com.ygo.common.AppConstants;
 import com.ygo.model.critiria.CardCriteria;
 import com.ygo.model.dto.CardDTO;
-import com.ygo.model.dto.request.CardIdsPdfRequest;
-import com.ygo.model.dto.request.CardNameRequest;
 import com.ygo.model.pojo.CardContainer;
 import com.ygo.service.CardService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @RequestMapping(AppConstants.CARD_URL)
@@ -32,7 +30,7 @@ public class CardController {
 
     @Operation(description = "Retrieves full details for a single card, including its parsed effects")
     @GetMapping("/{cardId}")
-    public ResponseEntity<CardDTO> getCardById(@PathVariable Long cardId) {
+    public ResponseEntity<CardDTO> getCardById(@PathVariable String cardId) {
         CardDTO card = cardService.getCardById(cardId);
         return ResponseEntity.ok(card);
     }
@@ -45,8 +43,8 @@ public class CardController {
 
     @Operation(description = "Returns all cards matching the provided names, case-insensitive.")
     @PostMapping("/by_names")
-    public ResponseEntity<List<CardDTO>> getCardsByNames(@RequestBody @Valid CardNameRequest request) {
-        return ResponseEntity.ok(cardService.findByNames(request.names()));
+    public ResponseEntity<List<CardDTO>> getCardsByNames(@RequestBody List<String> names) {
+        return ResponseEntity.ok(cardService.findByNames(names));
     }
 
     @GetMapping("/cards")
@@ -59,8 +57,14 @@ public class CardController {
         cardService.updateCards();
     }
 
+    @GetMapping("/getIdWithoutEffectOrCat")
+    public ResponseEntity<Set<String>> getIdWithoutEffectOrCat() {
+        return ResponseEntity.ok(cardService.getIdWithoutEffectOrCat());
+
+    }
+
     @PostMapping("/export")
-    public ResponseEntity<byte[]> exportToPdf(@RequestBody CardIdsPdfRequest request) {
+    public ResponseEntity<byte[]> exportToPdf(@RequestBody List<String> request) {
         try {
             byte[] pdfBytes = cardService.exportToPdf(request);
 

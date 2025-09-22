@@ -18,8 +18,6 @@ public class AppConstants {
     public static final String AUTH_URL = "/auth";
 
 
-
-
     private AppConstants() {
     }
 }

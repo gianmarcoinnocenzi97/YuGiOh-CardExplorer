@@ -8,7 +8,6 @@ import com.ygo.integration.specification.CardSpecification;
 import com.ygo.model.*;
 import com.ygo.model.critiria.CardCriteria;
 import com.ygo.model.dto.CardDTO;
-import com.ygo.model.dto.request.CardIdsPdfRequest;
 import com.ygo.model.pojo.CardContainer;
 import com.ygo.model.pojo.CardPricesItem;
 import com.ygo.model.pojo.CardSetsItem;
@@ -52,7 +51,7 @@ public class CardServiceImpl implements CardService {
     private final ExecutorService executor = Executors.newFixedThreadPool(25);
 
     @Override
-    public CardDTO getCardById(Long id) {
+    public CardDTO getCardById(String id) {
         Card card = cardRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Card with id " + id + " not found"));
         return cardMapper.entityToDto(card);
@@ -83,10 +82,15 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public byte[] exportToPdf(CardIdsPdfRequest request) throws IOException {
-        List<Card> cards = cardRepository.findAllById(
-                request.ids().stream().map(Long::valueOf).toList()
-        );
+    public java.util.Set<String> getIdWithoutEffectOrCat() {
+        return cardRepository.findCardsWithoutEffectsAndTagsExcludingNormalTokenSkill();
+    }
+
+
+
+    @Override
+    public byte[] exportToPdf(List<String> ids) throws IOException {
+        List<Card> cards = cardRepository.findAllById(ids);
 
         List<CardDTO> cardDTOs = cards.stream()
                 .map(cardMapper::entityToDto)
