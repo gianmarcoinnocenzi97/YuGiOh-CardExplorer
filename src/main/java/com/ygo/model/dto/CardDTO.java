@@ -28,7 +28,7 @@ public class CardDTO {
     private TypeDTO type;
     private ArchetypeDTO archetype;
     private FrameTypeDTO frameType;
-    private List<EffectTagDTO> tags;
+    private List<EffectTagDTO> effectTags;
     private List<EffectDTO> effects;
     private List<CardReleaseDTO> cardReleases;
     private PriceDTO price;

@@ -4,12 +4,11 @@ import com.ygo.common.PdfUtils;
 import com.ygo.integration.ResourceNotFoundException;
 import com.ygo.integration.YgoProDeckClient;
 import com.ygo.integration.mapper.CardMapper;
-import com.ygo.integration.mapper.EffectMapper;
 import com.ygo.integration.specification.CardSpecification;
 import com.ygo.model.*;
 import com.ygo.model.critiria.CardCriteria;
 import com.ygo.model.dto.CardDTO;
-import com.ygo.model.dto.request.InsertEffectRequest;
+import com.ygo.model.dto.request.InsertEffectTagRequest;
 import com.ygo.model.pojo.CardContainer;
 import com.ygo.model.pojo.CardPricesItem;
 import com.ygo.model.pojo.CardSetsItem;
@@ -44,10 +43,9 @@ public class CardServiceImpl implements CardService {
     private final FrameTypeRepository frameTypeRepository;
     private final RarityRepository rarityRepository;
     private final SetRepository setRepository;
-    private final EffectRepository effectRepository;
+    private final EffectTagRepository effectTagRepository;
 
     private final CardMapper cardMapper;
-    private final EffectMapper effectMapper;
 
     private final CardSpecification cardSpecification;
     private final PdfUtils pdfUtils;
@@ -91,18 +89,22 @@ public class CardServiceImpl implements CardService {
         return cardRepository.findCardsWithoutEffectsAndTagsExcludingNormalTokenSkill();
     }
 
+    @Transactional
     @Override
-    public void insertEffect(InsertEffectRequest insertEffectRequest) {
+    public void addEffectTag(InsertEffectTagRequest insertEffectTagRequest) {
 
-        Card card = cardRepository.findById(insertEffectRequest.idCard())
-                .orElseThrow(() -> new ResourceNotFoundException("Card with id " + insertEffectRequest.idCard() + " not found"));
+        Card card = cardRepository.findById(insertEffectTagRequest.idCard())
+                .orElseThrow(() -> new ResourceNotFoundException("Card with id " + insertEffectTagRequest.idCard() + " not found"));
 
-        List<Effect> effect = effectRepository.saveAll(effectMapper.dtoToEntityList(insertEffectRequest.effects()));
-        card.setEffects(effect);
+        EffectTag effectTag = effectTagRepository.findByName(insertEffectTagRequest.effectTag())
+                .orElseThrow(() -> new ResourceNotFoundException("EffetTag with name " + insertEffectTagRequest.effectTag() + " not found"));
+
+        if(card.getEffectTags() == null){
+            card.setEffectTags(new ArrayList<>());
+        }
+        card.getEffectTags().add(effectTag);
         cardRepository.save(card);
-
     }
-
 
 
     @Override

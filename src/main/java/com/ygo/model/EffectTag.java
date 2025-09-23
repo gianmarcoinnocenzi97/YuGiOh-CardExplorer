@@ -21,7 +21,7 @@ public class EffectTag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "effectTags")
     @JsonIgnore
     private List<Card> cards;
 }

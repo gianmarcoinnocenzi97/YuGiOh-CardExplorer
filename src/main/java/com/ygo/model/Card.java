@@ -52,7 +52,7 @@ public class Card {
             joinColumns = @JoinColumn(name = "card_id"),
             inverseJoinColumns = @JoinColumn(name = "effect_tag_id")
     )
-    private List<EffectTag> tags = new ArrayList<>();
+    private List<EffectTag> effectTags = new ArrayList<>();
     @ManyToMany
     @JoinTable(
             name = "card_effect",

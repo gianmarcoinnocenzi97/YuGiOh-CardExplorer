@@ -15,7 +15,7 @@ public interface CardRepository extends JpaRepository<Card, String >, JpaSpecifi
     List<Card> findByNameInIgnoreCase(List<String> names);
     @Query("SELECT c.id FROM Card c " +
             "LEFT JOIN c.effects e " +
-            "LEFT JOIN c.tags t " +
+            "LEFT JOIN c.effectTags t " +
             "WHERE e IS NULL " +
             "AND t IS NULL " +
             "AND (c.frameType IS NULL OR c.frameType.name NOT IN ('Normal', 'Token', 'Skill'))")

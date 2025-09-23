@@ -4,7 +4,7 @@ package com.ygo.rest;
 import com.ygo.common.AppConstants;
 import com.ygo.model.critiria.CardCriteria;
 import com.ygo.model.dto.CardDTO;
-import com.ygo.model.dto.request.InsertEffectRequest;
+import com.ygo.model.dto.request.InsertEffectTagRequest;
 import com.ygo.model.pojo.CardContainer;
 import com.ygo.service.CardService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -65,11 +65,12 @@ public class CardController {
 
     }
 
-    @PostMapping("/insertEffect")
-    public ResponseEntity<HttpStatus> insertEffect(@RequestBody InsertEffectRequest insertEffectRequest) {
-       cardService.insertEffect(insertEffectRequest);
+    @PostMapping("/addEffectTag")
+    public ResponseEntity<HttpStatus> addEffectTag(@RequestBody InsertEffectTagRequest insertEffectTagRequest) {
+        cardService.addEffectTag(insertEffectTagRequest);
         return ResponseEntity.ok().build();
     }
+
 
     @PostMapping("/export")
     public ResponseEntity<byte[]> exportToPdf(@RequestBody List<String> request) {
