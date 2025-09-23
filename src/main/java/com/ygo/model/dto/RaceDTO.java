@@ -12,8 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RaceDTO {
 
-
-    private String id;
+    private Long id;
     private String name;
     
 }

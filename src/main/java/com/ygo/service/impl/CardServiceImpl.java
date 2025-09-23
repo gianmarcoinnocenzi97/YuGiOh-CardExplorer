@@ -4,10 +4,12 @@ import com.ygo.common.PdfUtils;
 import com.ygo.integration.ResourceNotFoundException;
 import com.ygo.integration.YgoProDeckClient;
 import com.ygo.integration.mapper.CardMapper;
+import com.ygo.integration.mapper.EffectMapper;
 import com.ygo.integration.specification.CardSpecification;
 import com.ygo.model.*;
 import com.ygo.model.critiria.CardCriteria;
 import com.ygo.model.dto.CardDTO;
+import com.ygo.model.dto.request.InsertEffectRequest;
 import com.ygo.model.pojo.CardContainer;
 import com.ygo.model.pojo.CardPricesItem;
 import com.ygo.model.pojo.CardSetsItem;
@@ -42,9 +44,12 @@ public class CardServiceImpl implements CardService {
     private final FrameTypeRepository frameTypeRepository;
     private final RarityRepository rarityRepository;
     private final SetRepository setRepository;
+    private final EffectRepository effectRepository;
+
+    private final CardMapper cardMapper;
+    private final EffectMapper effectMapper;
 
     private final CardSpecification cardSpecification;
-    private final CardMapper cardMapper;
     private final PdfUtils pdfUtils;
     private final YgoProDeckClient client;
 
@@ -84,6 +89,18 @@ public class CardServiceImpl implements CardService {
     @Override
     public java.util.Set<String> getIdWithoutEffectOrCat() {
         return cardRepository.findCardsWithoutEffectsAndTagsExcludingNormalTokenSkill();
+    }
+
+    @Override
+    public void insertEffect(InsertEffectRequest insertEffectRequest) {
+
+        Card card = cardRepository.findById(insertEffectRequest.idCard())
+                .orElseThrow(() -> new ResourceNotFoundException("Card with id " + insertEffectRequest.idCard() + " not found"));
+
+        List<Effect> effect = effectRepository.saveAll(effectMapper.dtoToEntityList(insertEffectRequest.effects()));
+        card.setEffects(effect);
+        cardRepository.save(card);
+
     }
 
 

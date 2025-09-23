@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
 
 @Table(name = "price")
 @Entity
@@ -16,8 +15,8 @@ import org.hibernate.annotations.UuidGenerator;
 public class Price {
 
     @Id
-    @UuidGenerator
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String cardmarket;
     private String tcgplayer;
     private String ebay;

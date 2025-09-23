@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PriceDTO {
 
-    private String id;
+    private Long id;
     private String cardmarket;
     private String tcgplayer;
     private String ebay;

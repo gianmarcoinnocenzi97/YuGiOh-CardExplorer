@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ArchetypeDTO {
 
-    private String id;
+    private Long id;
     private String name;
 
 }

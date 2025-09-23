@@ -11,8 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class FrameTypeDTO {
 
-    private String id;
+    private Long id;
     private String name;
 
-    
 }

@@ -11,8 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EffectTagDTO {
 
-
-    private String id;
+    private Long id;
     private String name;
 
 }

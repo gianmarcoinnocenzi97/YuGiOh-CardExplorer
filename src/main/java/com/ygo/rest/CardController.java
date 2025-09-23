@@ -4,6 +4,7 @@ package com.ygo.rest;
 import com.ygo.common.AppConstants;
 import com.ygo.model.critiria.CardCriteria;
 import com.ygo.model.dto.CardDTO;
+import com.ygo.model.dto.request.InsertEffectRequest;
 import com.ygo.model.pojo.CardContainer;
 import com.ygo.service.CardService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,14 +54,21 @@ public class CardController {
     }
 
     @GetMapping("/update")
-    public void updateCards() {
+    public ResponseEntity<HttpStatus> updateCards() {
         cardService.updateCards();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/getIdWithoutEffectOrCat")
     public ResponseEntity<Set<String>> getIdWithoutEffectOrCat() {
         return ResponseEntity.ok(cardService.getIdWithoutEffectOrCat());
 
+    }
+
+    @PostMapping("/insertEffect")
+    public ResponseEntity<HttpStatus> insertEffect(@RequestBody InsertEffectRequest insertEffectRequest) {
+       cardService.insertEffect(insertEffectRequest);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/export")

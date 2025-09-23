@@ -2,6 +2,7 @@ package com.ygo.service;
 
 import com.ygo.model.critiria.CardCriteria;
 import com.ygo.model.dto.CardDTO;
+import com.ygo.model.dto.request.InsertEffectRequest;
 import com.ygo.model.pojo.CardContainer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ public interface CardService {
     List<CardDTO> findByNames(List<String> names);
     CardContainer fetchAllCards();
     java.util.Set<String> getIdWithoutEffectOrCat();
+    void insertEffect(InsertEffectRequest insertEffectRequest);
     byte[] exportToPdf(List<String> ids) throws IOException;
     void updateCards();
 }

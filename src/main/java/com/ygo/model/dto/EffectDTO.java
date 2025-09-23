@@ -12,8 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class EffectDTO {
 
-
-    private String id;
+    private Long id;
     private String condition;
     private String cost;
     private String resolution;

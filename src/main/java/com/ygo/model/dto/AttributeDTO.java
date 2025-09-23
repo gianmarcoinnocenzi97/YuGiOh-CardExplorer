@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AttributeDTO {
 
-    private String id;
+    private Long id;
     private String name;
     
 }

@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CardReleaseDTO {
 
-    private String id;
+    private Long id;
     private String price;
     private String code;
 
