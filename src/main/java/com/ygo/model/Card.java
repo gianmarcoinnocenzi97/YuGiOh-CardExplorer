@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "card")
 @Entity
@@ -52,7 +54,7 @@ public class Card {
             joinColumns = @JoinColumn(name = "card_id"),
             inverseJoinColumns = @JoinColumn(name = "effect_tag_id")
     )
-    private List<EffectTag> effectTags = new ArrayList<>();
+    private Set<EffectTag> effectTags = new HashSet<>();
     @ManyToMany
     @JoinTable(
             name = "card_effect",

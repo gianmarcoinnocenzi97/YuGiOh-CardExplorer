@@ -94,15 +94,13 @@ public class CardServiceImpl implements CardService {
     public void addEffectTag(InsertEffectTagRequest insertEffectTagRequest) {
 
         Card card = cardRepository.findById(insertEffectTagRequest.idCard())
-                .orElseThrow(() -> new ResourceNotFoundException("Card with id " + insertEffectTagRequest.idCard() + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Card with id " + insertEffectTagRequest.idCard() + " not found"));
 
-        EffectTag effectTag = effectTagRepository.findByName(insertEffectTagRequest.effectTag())
-                .orElseThrow(() -> new ResourceNotFoundException("EffetTag with name " + insertEffectTagRequest.effectTag() + " not found"));
+        java.util.Set<EffectTag> effectTagsToAdd = effectTagRepository.findByNames(insertEffectTagRequest.effectTag());
 
-        if(card.getEffectTags() == null){
-            card.setEffectTags(new ArrayList<>());
-        }
-        card.getEffectTags().add(effectTag);
+        card.setEffectTags(effectTagsToAdd);
+
         cardRepository.save(card);
     }
 

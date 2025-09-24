@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Setter
@@ -28,7 +29,7 @@ public class CardDTO {
     private TypeDTO type;
     private ArchetypeDTO archetype;
     private FrameTypeDTO frameType;
-    private List<EffectTagDTO> effectTags;
+    private Set<EffectTagDTO> effectTags;
     private List<EffectDTO> effects;
     private List<CardReleaseDTO> cardReleases;
     private PriceDTO price;
